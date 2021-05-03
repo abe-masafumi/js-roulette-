@@ -1,0 +1,137 @@
+body {
+  background: gray;
+  width: 1980px;
+  height: 1080px;
+  text-align: center;
+}
+
+.play_table {
+  display: flex;
+}
+
+/* テーブル */
+.ruret_table {
+  background: white;
+  width: 1132px;
+  margin: 50px 100px 50px 50px; /*よく変更するかも*/
+}
+.ruret_table ul {
+  list-style: none;
+  display: flex;
+  margin-right: 70px;
+  height: 50px;
+}
+.ruret_table ul li {
+  width: 50px;
+  height: 50px;
+}
+
+.line1 {
+  display: flex;
+}
+
+.zero {
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid goldenrod;
+}
+
+.ruret_table_nombers {
+  width: 1000px;
+}
+.ruret_table_options1 {
+  flex-direction: column;
+}
+.ruret_table_options1 th {
+  margin: 1px;
+}
+
+.ruret_table_options1 th {
+  width: 100%;
+  display: block;
+}
+
+.ruret_option,
+th {
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgb(151, 83, 83);
+}
+.ruret_table_options3,
+.ruret_table_options2 {
+  width: 1000px;
+  margin-left: 75px;
+}
+
+/* 数値結果 */
+
+.randomNum {
+  background: pink;
+  font-size: 100x;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* チップの表示 */
+.select_chip {
+  height: 100px;
+  display: flex;
+}
+
+.select_chip div {
+  background: orange;
+  width: 100px;
+
+}
+
+
+
+
+/* アクション */
+.player_action {
+  display: flex;
+  background: greenyellow;
+  font-size: 20px;
+}
+.player_action option {
+  width: 150px;
+  height: 120px;
+}
+
+.lone {
+  margin-right: 100px;
+}
+
+.back {
+margin-left: 150px;
+}
+
+.start {
+  margin-left: 200px;
+}
+
+
+/* サブオプション */
+.sub_option {
+  display: flex;
+}
+
+.sub_option > div {
+  display: flex;
+  margin: 0 100px;
+}
+
+/* タッチできなくする */
+.smoke {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.red {
+  background: red;
+  opacity: 0.5;
+  pointer-events: none;
+}

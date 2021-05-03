@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乱数発生の練習</title>
+</head>
+
+<body>
+  <h1>乱数発生の練習</h1>
+
+  <script>
+    // 0から4までの乱数を発生
+    const yonn = Math.floor(Math.random() * 5);
+    console.log(yonn);
+
+
+    const test = [];
+    for (let i = 0; i < 100; i++) {
+      const zyuu = Math.floor(Math.random() * 100) + 1;
+        test.push(zyuu);
+
+        // const test2 = [1,2,3,3,3,4,5,6,7,1]
+        var u = test.filter(function (x, i, self) {
+          return self.indexOf(x) === i;
+      });
+         
+
+    }  
+    console.log(u);
+     u.sort();
+
+     console.log(u);
+
+    function aaaa(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    
+    console.log(aaaa(5,10));
+    console.log(aaaa(50,99));
+
+
+  
+  
+
+    
+
+
+
+
+  </script>
+</body>
+
+</html>
