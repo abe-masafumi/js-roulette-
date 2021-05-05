@@ -228,7 +228,7 @@ th {
   overflow: hidden;
 }
 #chips50::before{
-  content: url("../img/チップ50.png");
+  content: url("https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9750.png?raw=true");
   /* text-align: center */
   display: flex;
   justify-content: center;
@@ -236,7 +236,7 @@ th {
   height: 100%;
 }
 #chips25::before{
-  content: url("../img/チップ25.png");
+  content: url("https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9725.png?raw=true");
   /* text-align: center */
   display: flex;
   justify-content: center;
@@ -244,7 +244,7 @@ th {
   height: 100%;
 }
 #chips10::before{
-  content: url("../img/チップ10.png");
+  content: url("https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9710.png?raw=true");
   /* text-align: center */
   display: flex;
   justify-content: center;
@@ -253,7 +253,7 @@ th {
 }
 
 #chips5::before{
-  content: url("../img/チップ5.png");
+  content: url("https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%975.png?raw=true");
   /* text-align: center */
   display: flex;
   justify-content: center;
