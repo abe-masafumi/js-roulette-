@@ -261,7 +261,7 @@ th {
   height: 100%;
 }
 #chips1:before{
-  content: url("../img/チップ.png");
+  content: url("https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%97.png?raw=true");
   /* text-align: center */
   display: flex;
   justify-content: center;
