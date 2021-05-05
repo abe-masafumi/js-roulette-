@@ -10,6 +10,21 @@
 </head>
 
 <body>
+
+  <div class="mask" id="mask"></div>
+  <div class="gameStart" id="gameStart">
+    <div>ゲームを始める</div>
+  </div>
+
+  <div class="info" id="info">
+    <div><a href="info.html">説明</a></div>
+  </div>
+
+  <div id="gameOver" class="gameOver displaynone">
+    <div>Game Over</div>
+  </div>
+
+
   <div class="play_table smoke" id="play_table">
     <div class="ruret_table">
       <p>データ</p>
@@ -19,7 +34,7 @@
       <div class="line1">
         <table class="zero">
           <tr>
-            <th><option id="tableNum_zero" value=0>0</option></th>
+            <th style="border: initial;"><option id="tableNum_zero" value=0>0</option></th>
           </tr>
         </た>
         <table class="ruret_table_nombers">
@@ -68,9 +83,9 @@
         </table>
         <table class="ruret_table_options1">
           <tr>
-            <th><option id="optionline1" value="up">2to1</option></th>
+            <th style="border-radius: 0 40px 0 0;"><option id="optionline1" value="up">2to1</option></th>
             <th><option id="optionline2" value="center">2to1</option></th>
-            <th><option id="optionline3" value="bottom">2to1</option></th>
+            <th style="border-radius: 0 0 40px 0;"><option id="optionline3" value="bottom">2to1</option></th>
           
           </tr>
         </table>
@@ -79,19 +94,19 @@
         <table class="ruret_table_options2">
           <tr>
             <!-- ここから -->
-            <th><option id="optionST12_1" value="1st12">1nd12</option></th>
+            <th><option id="optionST12_1" value="1st12">1st12</option></th>
             <th><option id="optionST12_2" value="2st12">2nd12</option></th>
-            <th><option id="optionST12_3" value="3st12">3nd12</option></th>
+            <th><option id="optionST12_3" value="3st12">3rd12</option></th>
           </tr>
         </table>
         <table class="ruret_table_options3">
           <tr>
-            <th><option id="optionHalfNum_left" value="left">1-18</option></th>
+            <th style="border-radius: 0 0 0 40px;"><option id="optionHalfNum_left" value="left">1-18</option></th>
             <th><option id="option1or2_EVENNum" value="EVEN">EVEN</option></th>
             <th class="backbred"><option id="optionColor_RED" value="RED">RED</option></th>
             <th class="backblack"><option id="optionColor_BLACK" value="BLACK">BLACK</option></th>
             <th><option id="option1or2_ODDNum" value="ODD">ODD</option></th>
-            <th><option id="optionHalfNum_right" value="right">19-36</option></th>
+            <th style="border-radius: 0 0 40px 0;"><option id="optionHalfNum_right" value="right">19-36</option></th>
 
           </tr>
         </table>
@@ -133,16 +148,20 @@
     </div>
     <div class="cash">
       <p>現金  ¥</p>
-      <p id="chash"></p>
+      <p style="margin-left: 20px;" id="chash"></p>
     </div>
     <div class="plus">
       <p>勝利  ¥</p>
-      <p id="win">10000円</p>
+      <p style="margin-left: 20px;" id="win"></p>
     </div>
     <div class="minus">
       <p>負債  ¥</p>
-      <p id="lonetext"></p>
+      <p style="margin-left: 20px;" id="lonetext"></p>
     </div>
+  </div>
+
+  <div class="colect displaynone" id="colect">
+    <div id="colecttext"></div>
   </div>
 
 

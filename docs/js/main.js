@@ -6,6 +6,13 @@
 //   console.log(String(id));
 {
 
+  $('#gameStart').on('click', function () {
+    $('#info').addClass('displaynone');
+    $('#mask').addClass('displaynone');
+    $(this).addClass('displaynone');
+    countUp();
+
+  });
 
   // 選んだ数字のデータ
   let selectNum = [];
@@ -92,15 +99,49 @@
   // sleep機能
   function sleep(waitMsec) {
     var startMsec = new Date();
-  
-    // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+    // 指定ミリ秒間だけループさせる
     while (new Date() - startMsec < waitMsec);
   }
+
+function colorSwitch() {
+  switch (chip33) {
+    case "100":
+    $(this).addClass('white');
+    break;
+    case "500":
+    $(this).addClass('purple');
+    break;
+    case "1000":
+    $(this).addClass('skyblue');
+    break;
+    case "2500":
+    $(this).addClass('green');
+    break;
+    case "5000":
+    $(this).addClass('redpurple');
+    break;
+  }
+}
+// あたり通知
+function queue(op) {
+  $(document).ready(function() {
+    //queue()で処理を溜めてdequeue()で実行。3秒経ったらfadeOut()
+   $("#colect").fadeIn(1000).queue(function() {
+    $('#colecttext').text(op);
+       setTimeout(function(){$("#colect").dequeue();
+       $('#colecttext').text("");
+       }, 2000);
+   });
+   $("#colect").fadeOut();
+});
+}
+
   /////////////////////
   // タイマー
   const timer = document.getElementById('timer');
   let startTime;
   let timeoutId; 
+
   function countUp() {
     const d = new Date(Date.now() - startTime);
     const m = String(d.getMinutes()).padStart(2, '0');
@@ -111,7 +152,6 @@
     }, 1000);
   }
     startTime = Date.now();
-    countUp();
   
   // chipsのクリックアクション
   $('#start').removeClass("smoke");
@@ -119,7 +159,7 @@
   $('[id^=chips]').click(function () {
     cselectedChip = this.value;
     chip33 = this.value;
-    console.log(cselectedChip);///////////////
+    console.log(cselectedChip);
 
     // $('#select_chip_img').append($("<img src='chipImg[0]'>"));
     $('[id^=chips]').removeClass("smoke");
@@ -148,47 +188,57 @@
   $('[id^=tableNum_]').on('click', function () {
     $('#spin_img').addClass('spin');
     $('#randomNum').removeClass('pnum');
-
      deleteDate = 0;
-    // ゲームオーバー通知
-    if (handmoney < 0) {
-     alert('Game Over');
-    clearTimeout(timeoutId);   ////stoptimer
 
-    }
     if (cselectedChip == 100) {
       selectNum.push(parseInt(this.value));
       // お金の処理
       chip00.push(100);
-      $(this).addClass('white');
+      // $(this).addClass('white');
     }
     if (cselectedChip == 500) {
       selectNum.push(parseInt(this.value));
       // お金の処理
       chip00.push(500);
-      $(this).addClass('purple');
+      // $(this).addClass('purple');
     }
     if (cselectedChip == 1000) {
       selectNum.push(parseInt(this.value));
       // お金の処理
       chip00.push(1000);
-      $(this).addClass('skyblue');
+      // $(this).addClass('skyblue');
     }
     if (cselectedChip == 2500) {
       selectNum.push(parseInt(this.value));
       console.log(selectNum);
       // お金の処理
       chip00.push(25000);
-      $(this).addClass('green');
+      // $(this).addClass('green');
     }
     if (cselectedChip == 5000) {
       selectNum.push(parseInt(this.value));
       // お金の処理
       chip00.push(5000);
+      // $(this).addClass('redpurple');
+    }
+    switch (chip33) {
+      case "100":
+      $(this).addClass('white');
+      break;
+      case "500":
+      $(this).addClass('purple');
+      break;
+      case "1000":
+      $(this).addClass('skyblue');
+      break;
+      case "2500":
+      $(this).addClass('green');
+      break;
+      case "5000":
       $(this).addClass('redpurple');
+      break;
     }
 
-    $(this).addClass('red');
     // 常時お金の計算
     handmoney -= cselectedChip
     $('#chash').text(String(handmoney));
@@ -216,7 +266,24 @@
       console.log(optionNum3);
     }
 
-    $(this).addClass('red');
+    switch (chip33) {
+      case "100":
+      $(this).addClass('white');
+      break;
+      case "500":
+      $(this).addClass('purple');
+      break;
+      case "1000":
+      $(this).addClass('skyblue');
+      break;
+      case "2500":
+      $(this).addClass('green');
+      break;
+      case "5000":
+      $(this).addClass('redpurple');
+      break;
+    }
+    // $(this).addClass('red');
     // お金の計算
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
@@ -241,8 +308,25 @@
       console.log(optionST12_right);
     }
 
+    switch (chip33) {
+      case "100":
+      $(this).addClass('white');
+      break;
+      case "500":
+      $(this).addClass('purple');
+      break;
+      case "1000":
+      $(this).addClass('skyblue');
+      break;
+      case "2500":
+      $(this).addClass('green');
+      break;
+      case "5000":
+      $(this).addClass('redpurple');
+      break;
+    }
    
-    $(this).addClass('red');
+    // $(this).addClass('red');
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
 
@@ -261,7 +345,24 @@
       new_hulf_right = [].concat(chip33);
       console.log(optionHalfNum_right);
     }
-    $(this).addClass('red');
+    switch (chip33) {
+      case "100":
+      $(this).addClass('white');
+      break;
+      case "500":
+      $(this).addClass('purple');
+      break;
+      case "1000":
+      $(this).addClass('skyblue');
+      break;
+      case "2500":
+      $(this).addClass('green');
+      break;
+      case "5000":
+      $(this).addClass('redpurple');
+      break;
+    }
+    // $(this).addClass('red');
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
   });
@@ -280,8 +381,25 @@
       new_odd = [].concat(chip33);
       console.log(option1or2_odd);
     }
+    switch (chip33) {
+      case "100":
+      $(this).addClass('white');
+      break;
+      case "500":
+      $(this).addClass('purple');
+      break;
+      case "1000":
+      $(this).addClass('skyblue');
+      break;
+      case "2500":
+      $(this).addClass('green');
+      break;
+      case "5000":
+      $(this).addClass('redpurple');
+      break;
+    }
 
-    $(this).addClass('red');
+    // $(this).addClass('red');
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
   });
@@ -300,24 +418,41 @@
       new_black = [].concat(chip33);
       console.log(color_black);
     }
+    switch (chip33) {
+      case "100":
+      $(this).addClass('white');
+      break;
+      case "500":
+      $(this).addClass('purple');
+      break;
+      case "1000":
+      $(this).addClass('skyblue');
+      break;
+      case "2500":
+      $(this).addClass('green');
+      break;
+      case "5000":
+      $(this).addClass('redpurple');
+      break;
+    }
 
-    $(this).addClass('red');
+    // $(this).addClass('red');
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
   });
   ///////////////////////////////
 
   $('#start').on('click', function () {
+
     $('#spin_img').removeClass('spin');
     $('#randomNum').addClass('pnum');
-
     const randomNum = getRandomInt(0, 36);
     $('#randomNum').text(randomNum);
     // 過去データ処理
     pastDate.splice(0, 1, randomNum);
     // 選んだデータが一致しているか
     if (selectNum.includes(randomNum)) {
-      alert('collect!!!');
+      queue("あたり⇨ストレート");
       ///////////////////////////////
       // 配列の特定のobjのキーを取得
       const result1 = Object.keys(selectNum).reduce((r, key) => {
@@ -327,73 +462,70 @@
       handmoney += chip00[result1] * 36;
       $('#chash').text(handmoney);
       ////////////////////////////////
-    } else {
-      alert('you lose!!');
     }
 
     // 右オプション　当選　計算処理
     if (optionNum1.includes(randomNum)) {
       handmoney += new_arr_up * 3;
-      alert('optionNum1 collect!');
+      queue("あたり「2TO1」");
       $('#chash').text(handmoney);
     }
     if (optionNum2.includes(randomNum)) {
       handmoney += new_arr_center * 3;
-      alert('optionNum2 collect!');
+      queue("あたり「2TO1」");
       $('#chash').text(handmoney);
     }
     if (optionNum3.includes(randomNum)) {
       handmoney += new_arr_bottom * 3;
-      alert('optionNum3 collect!');
+      queue("あたり「2TO1」");
       $('#chash').text(handmoney);
     }
-
     if (optionST12_left.includes(randomNum)) {
       handmoney += new_arr_left * 3;
-      alert('optionST12_left collect!');
+      queue("あたり「1ST12」");
       $('#chash').text(handmoney);
     }
     if (optionST12_center.includes(randomNum)) {
       handmoney += new_arr_middle * 3;
-      alert('optionST12_center collect!');
+      queue("あたり「2ND12」");
       $('#chash').text(handmoney);
     }
     if (optionST12_right.includes(randomNum)) {
       handmoney += new_arr_right * 3;
-      alert('optionST12_right collect!');
+      queue("あたり「3RD12」");
       $('#chash').text(handmoney);
     }
 
     if (optionHalfNum_left.includes(randomNum)) {
       handmoney += new_hulf_left * 2;
-      alert('optionHalfNum_left collect!');
+      queue("あたり「1~18」");
       $('#chash').text(handmoney);
     }
     if (optionHalfNum_right.includes(randomNum)) {
       handmoney += new_hulf_right * 2;
-      alert('optionHalfNum_right collect!');
+      queue("あたり「19~36」");
       $('#chash').text(handmoney);
     }
   // 偶数と奇数
     if (option1or2_even.includes(randomNum)) {
       handmoney += new_even * 2;
-      alert('option1or2_even collect!');
+      queue("あたり「EVEN」");
       $('#chash').text(handmoney);
     }
     if (option1or2_odd.includes(randomNum)) {
       handmoney += new_odd * 2;
-      alert('option1or2_odd collect!');
+      queue("あたり「ODD」");
       $('#chash').text(handmoney);
-  ///red or black
+      ///red or black
     }
     if (color_red.includes(randomNum)) {
       handmoney += new_red * 2;
-      alert('color_red collect!');
+      queue("あたり「RED」");
       $('#chash').text(handmoney);
     }
     if (color_black.includes(randomNum)) {
       handmoney += new_black * 2;
-      alert('color_black collect!');
+      queue("あたり「BLACK」");
       $('#chash').text(handmoney);
     }
     color_red = [];
@@ -415,18 +547,12 @@
     selectNum = [];
     chip00 = [];
 
-    $('[id^=tableNum_]').removeClass('white');
-    $('[id^=tableNum_]').removeClass('purple');
-    $('[id^=tableNum_]').removeClass('skyblue');
-    $('[id^=tableNum_]').removeClass('green');
-    $('[id^=tableNum_]').removeClass('redpurple');
-    
-    $('[id^=tableNum_]').removeClass('red');
-    $('[id^=optionline]').removeClass('red');
-    $('[id^=optionST12_]').removeClass('red');
-    $('[id^=optionHalfNum_').removeClass('red');
-    $('[id^=option1or2_').removeClass('red');
-    $('[id^=optionColor_').removeClass('red');
+    $('[id^=tableNum_]').removeClass('white purple skyblue green redpurple');
+    $('[id^=optionline]').removeClass('white purple skyblue green redpurple');
+    $('[id^=optionST12_]').removeClass('white purple skyblue green redpurple');
+    $('[id^=optionHalfNum_').removeClass('white purple skyblue green redpurple');
+    $('[id^=option1or2_').removeClass('white purple skyblue green redpurple');
+    $('[id^=optionColor_').removeClass('white purple skyblue green redpurple');
 
     // 過去データの表示
     const ul = document.getElementById('pastDate')
@@ -446,12 +572,12 @@
     win.textContent = memory2;
     memory = 0;
     memory += handmoney;
-
-
-
+    // ゲームオーバー通知
+    if (handmoney < 0) {
+      // alert('Game Over');
+      $('#mask').removeClass('displaynone');
+      $('#gameOver').removeClass('displaynone');
+      clearTimeout(timeoutId);   ////stoptimer
+      }
   });
-
- 
-
-
 }

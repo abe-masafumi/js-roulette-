@@ -8,6 +8,61 @@ body {
   border: 5px solid #7b442d;
 }
 
+.gameOver {
+  position: absolute;
+  top: 200px;
+  bottom: 0;
+  left: 0%;
+  right: 0;
+  z-index: 8;
+  font-size: 150px;
+  color: black;
+  text-shadow: #FC0 1px 0 10px;
+}
+
+
+.mask {
+  position: absolute;
+  background-color: rgba(5, 14, 5, 0.8);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.displaynone {
+  display: none;
+  pointer-events: none;
+}
+
+.gameStart{
+  background: green;
+  border: 6px solid #c89d0d;
+  border-radius: 30px 30px 30px 30px;
+  position: absolute;
+  top: 120px;
+  left: 300px;
+  font-size: 150px;
+  z-index: 6;
+}
+
+.info {
+  background: green;
+  background: green;
+  border: 6px solid #c89d0d;
+  border-radius: 30px 30px 30px 30px;
+  position: absolute;
+  top: 480px;
+  left: 675px;
+  font-size: 150px;
+  z-index: 6;
+}
+
 .play_table {
   display: flex;
 }
@@ -33,6 +88,7 @@ body {
   display: flex;
   align-items: center;
   border: 2px solid white;
+  border-radius: 20px 20px 20px 20px;
   height: 50px;
 }
 .ruret_table ul li {
@@ -50,7 +106,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid goldenrod;
+  border: 4px solid white;
+  border-radius: 40px 0 0 40px;
+  height: 274px;
+  margin-top: 2px;
 }
 
 
@@ -67,13 +126,16 @@ background: rgba(0, 0, 0, 0.5);
   flex-direction: column;
 }
 .ruret_table_options1 th {
-  margin: 1px;
+  margin: 1px 0;
+
   
 }
 
 .ruret_table_options1 th {
   width: 100%;
   display: block;
+  display: flex;
+  align-items: center;
 }
 
 .ruret_option,
@@ -81,17 +143,19 @@ th {
   width: 80px;
   height: 80px;
   border: 4px solid white;
+
+  /* line-height: 80px; */
 }
 .ruret_table_options3,
 .ruret_table_options2 {
   width: 1000px;
-  margin-left: 75px;
+  margin-left: 69px;
 }
 .ruret_table_options3 .backbred {
-  background: red;
+  background: rgba(255, 0, 0, 0.5);
 }
 .ruret_table_options3 .backblack {
-  background: black;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -114,7 +178,7 @@ th {
 }
 
 .spin {
-  animation: spinimg 100s linear infinite forwards;
+  animation: spinimg 200s linear infinite forwards;
 }
 
 @keyframes spinimg {
@@ -122,7 +186,7 @@ th {
    transform: rotate(0);
   }
   100% {
-   transform: rotate(10000deg);
+   transform: rotate(15000deg);
   }
 }
 
@@ -151,11 +215,6 @@ th {
   width: 150px;
   position: absolute;
 }
-
-  
-
-
-
 
 /* アクション */
 .player_action {
@@ -212,7 +271,7 @@ th {
 
 
 .lone {
-  margin-right: 100px;
+  margin: 0 42px;
 }
 
 .back {
@@ -273,4 +332,27 @@ margin-left: 150px;
   background: #8d00bd;
   pointer-events: none;
   color: white;
+}
+
+.colect {
+  background:#97af9d;
+  position: absolute;
+  width: 550px;
+  height: 200px;
+  top: 177px;
+  left: 346px;
+  z-index: 9;
+  color: black;
+  font-size: 60px;
+  line-height: 200px;
+  border: 4px solid #FC0;
+  border-radius: 40px;
+}
+
+#colecttext {
+text-align: center;
+text-shadow: #FC0 2px 0 10px;
+/* padding-left: 15px; */
+margin-left: 32px;
+
 }
