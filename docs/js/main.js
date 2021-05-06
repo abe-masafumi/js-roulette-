@@ -157,10 +157,12 @@ function queue(op) {
   $('#start').removeClass("smoke");
 
   $('[id^=chips]').click(function () {
+    $('#ruret_table').removeClass('dance');
+
     if (this.value == "all") {
       cselectedChip = handmoney;
        chip33 = handmoney;
-
+       $('#ruret_table').addClass('dance');
     } else {
       cselectedChip = this.value;
       chip33 = this.value;
@@ -191,7 +193,7 @@ function queue(op) {
     $('#img_place').attr('src',"./img/チップ50.png");
     }
     if (this.value == "all") {
-    $('#img_place').attr('src',"./img/チップ50.png");/////後で変更
+    $('#img_place').attr('src',"./img/オールイン.png");/////後で変更
     }
     $('#play_table').removeClass("smoke");
   });
@@ -436,7 +438,6 @@ function queue(op) {
       default:
       $(this).addClass('danger');
       break;
-
     }
 
     // $(this).addClass('red');
@@ -488,7 +489,7 @@ function queue(op) {
   $('#start').on('click', function () {
     $('#spin_img').removeClass('spin');
     $('#randomNum').addClass('pnum');
-    const randomNum = getRandomInt(1, 1);
+    const randomNum = getRandomInt(0, 36);
     $('#randomNum').text(randomNum);
     // 過去データ処理
     pastDate.splice(0, 1, randomNum);
@@ -616,15 +617,14 @@ function queue(op) {
     memory = 0;
     memory += handmoney;
 
-    const lose = ["お金が減った","負けた","お母さんに怒られる","。。。","涙。",]
+    const lose = ["お金が減った","負けた","イカサマか？","次は当てる！","涙。",]
 
-    if (memory2 <= 0) {
-      queue(lose[getRandomInt(0,4)]);
+    if (memory2 < 0) {
+      queue(lose[getRandomInt(0,lose.length - 1)]);
     }
 
-
     // ゲームオーバー通知
-    if (handmoney < 0) {
+    if (handmoney <= 0) {
       // alert('Game Over');
       $('#gameovermask').removeClass('displaynone');
       $('#gameOver').removeClass('displaynone');

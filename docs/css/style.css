@@ -6,6 +6,20 @@ body {
   color: white;
   margin: auto;
   border: 5px solid #7b442d;
+  user-select: none;
+}
+
+.dance {
+  animation: dansing 0.8s  infinite ;
+}
+
+@keyframes dansing {
+  0% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .gameovermask {
@@ -15,7 +29,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 5;
+  z-index: 7;
 }
 
 .gameOver {
@@ -137,6 +151,7 @@ background: rgba(0, 0, 0, 0.5);
 }
 .ruret_table_options1 th {
   margin: 1px 0;
+  cursor: pointer;
 
   
 }
@@ -146,6 +161,8 @@ background: rgba(0, 0, 0, 0.5);
   display: block;
   display: flex;
   align-items: center;
+  cursor: pointer;
+
 }
 
 .ruret_option,
@@ -153,6 +170,8 @@ th {
   width: 80px;
   height: 80px;
   border: 4px solid white;
+  cursor: pointer;
+
 
   /* line-height: 80px; */
 }
@@ -217,6 +236,7 @@ th {
 .select_chip {
   height: 100px;
   display: flex;
+  overflow: hidden;
 }
 
 .select_chip div {
@@ -236,6 +256,8 @@ th {
   width: 150px;
   height: 120px;
   overflow: hidden;
+  cursor: pointer;
+
 }
 #chips50::before{
   content: url("https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9750.png?raw=true");
@@ -282,6 +304,8 @@ th {
 
 .lone {
   margin: 0 42px;
+  cursor: pointer;
+
 }
 
 #chipsall {
@@ -290,6 +314,8 @@ margin-left: 150px;
 
 .start {
   margin-left: 200px;
+  cursor: pointer;
+
 }
 
 
@@ -357,7 +383,7 @@ margin-left: 150px;
   height: 200px;
   top: 177px;
   left: 346px;
-  z-index: 9;
+  z-index: 6;
   color: black;
   font-size: 40px;
   line-height: 200px;
