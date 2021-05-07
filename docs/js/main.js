@@ -1,36 +1,34 @@
-'use strict';
+'uss strict';
 
 //thクリック動作でid取得
 // $('th').on('click', function () {
 //    let id = $('this').attr('id');
 //   console.log(String(id));
 {
-
   $('#gameStart').on('click', function () {
     $('#info').addClass('displaynone');
     $('#mask').addClass('displaynone');
     $(this).addClass('displaynone');
     countUp();
-
   });
 
   // 選んだ数字のデータ
   let selectNum = [];
-// to1オプ
+  // to1オプ
   let optionNum1 = [];
   let optionNum2 = [];
   let optionNum3 = [];
-// ST12オプ
+  // ST12オプ
   let optionST12_left = [];
   let optionST12_center = [];
   let optionST12_right = [];
-//hulfNUmオプ
+  //hulfNUmオプ
   let optionHalfNum_left = [];
   let optionHalfNum_right = [];
-//even or odd
+  //even or odd
   let option1or2_even = [];
   let option1or2_odd = [];
-// red or blacl
+  // red or blacl
   let color_red = [];
   let color_black = [];
 
@@ -49,9 +47,9 @@
   const danger = document.getElementById('danger');
   danger.addEventListener('click', () => {
     lone -= 10000;
-  lonetext.textContent = lone;
-  handmoney += 10000;
-  $('#chash').text(String(handmoney));
+    lonetext.textContent = lone;
+    handmoney += 10000;
+    $('#chash').text(String(handmoney));
   });
 
   // 借金返済ボタン
@@ -59,8 +57,8 @@
   peyoff.addEventListener('click', () => {
     handmoney += lone;
     lone = 0;
-  $('#chash').text(String(handmoney));
-  lonetext.textContent = lone;
+    $('#chash').text(String(handmoney));
+    lonetext.textContent = lone;
   });
 
   // １ゲームの記録データ
@@ -68,29 +66,30 @@
   let memory2 = 0;
   memory += handmoney;
 
-//チップ金額
+  //チップ金額
   let chip00 = [];
   let chip33;
-//to1オプ
+  //to1オプ
   let new_arr_left = [];
   let new_arr_middle = [];
   let new_arr_right = [];
-//ST12オプ
+  //ST12オプ
   let new_arr_up;
   let new_arr_center;
   let new_arr_bottom;
-//hulfNUmオプ
+  //hulfNUmオプ
   let new_hulf_left;
   let new_hulf_right;
-//even or odd
+  //even or odd
   let new_even;
   let new_odd;
-// red or blacl
+  // red or blacl
   let new_black;
   let new_red;
 
   // 選んだチップ
   let cselectedChip;
+  let allin = 0;
 
   // ランダムな数字を選ぶ動作
   function getRandomInt(min, max) {
@@ -102,45 +101,54 @@
     // 指定ミリ秒間だけループさせる
     while (new Date() - startMsec < waitMsec);
   }
-
-function colorSwitch() {
-  switch (chip33) {
-    case "100":
-    $(this).addClass('white');
-    break;
-    case "500":
-    $(this).addClass('purple');
-    break;
-    case "1000":
-    $(this).addClass('skyblue');
-    break;
-    case "2500":
-    $(this).addClass('green');
-    break;
-    case "5000":
-    $(this).addClass('redpurple');
-    break;
+  // 色変更
+  function colorSwitch(mmm) {
+    switch (chip33) {
+      case "100":
+        $(mmm).addClass('white');
+        break;
+      case "500":
+        $(mmm).addClass('purple');
+        break;
+      case "1000":
+        $(mmm).addClass('skyblue');
+        break;
+      case "2500":
+        $(mmm).addClass('green');
+        break;
+      case "5000":
+        $(mmm).addClass('redpurple');
+        break;
+      default:
+        $(mmm).addClass('danger');
+        allin++;
+        if(allin == 2) {
+          $('#mask').removeClass('displaynone');
+          $('#mask').addClass('z3');
+        }
+        break;
+    }
   }
-}
-// あたり通知
-function queue(op) {
-  $(document).ready(function() {
-    //queue()で処理を溜めてdequeue()で実行。3秒経ったらfadeOut()
-   $("#colect").fadeIn(1000).queue(function() {
-    $('#colecttext').text(op);
-       setTimeout(function(){$("#colect").dequeue();
-       $('#colecttext').text("");
-       }, 2000);
-   });
-   $("#colect").fadeOut();
-});
-}
+  // あたり通知
+  function queue(op) {
+    $(document).ready(function () {
+      //queue()で処理を溜めてdequeue()で実行。3秒経ったらfadeOut()
+      $("#colect").fadeIn(1000).queue(function () {
+        $('#colecttext').text(op);
+        setTimeout(function () {
+          $("#colect").dequeue();
+          $('#colecttext').text("");
+        }, 2000);
+      });
+      $("#colect").fadeOut();
+    });
+  }
 
   /////////////////////
   // タイマー
   const timer = document.getElementById('timer');
   let startTime;
-  let timeoutId; 
+  let timeoutId;
 
   function countUp() {
     const d = new Date(Date.now() - startTime);
@@ -151,49 +159,45 @@ function queue(op) {
       countUp();
     }, 1000);
   }
-    startTime = Date.now();
-  
-  // chipsのクリックアクション
+  startTime = Date.now();
+
   $('#start').removeClass("smoke");
 
+  // chipsのクリックアクション
   $('[id^=chips]').click(function () {
+    allin = 0;
     $('#ruret_table').removeClass('dance');
-
     if (this.value == "all") {
       cselectedChip = handmoney;
-       chip33 = handmoney;
-       $('#ruret_table').addClass('dance');
+      chip33 = handmoney;
+      $('#ruret_table').addClass('dance');
     } else {
       cselectedChip = this.value;
       chip33 = this.value;
-
     }
-    console.log(cselectedChip);
-    console.log(chip33);
- 
 
-    // $('#select_chip_img').append($("<img src='chipImg[0]'>"));
     $('[id^=chips]').removeClass("smoke");
     $(this).addClass('smoke');
+    console.log(this.value);
 
-    // チップ画像を表示
-    if (this.value == 100) {
-    $('#img_place').attr('src',"./img/チップ.png");
+    const bbb =this.value;
+    const ぴくら = [100,500,1000,2500,5000,"all"];
+
+    function  tt(g,ccccc) {
+      if (bbb == ぴくら[g]) {
+        $('#img_place').attr('src', ccccc);
+      }
     }
-    if (this.value == 500) {
-    $('#img_place').attr('src',"./img/チップ5.png");
-    }
-    if (this.value == 1000) {
-    $('#img_place').attr('src',"./img/チップ10.png");
-    }
-    if (this.value == 2500) {
-    $('#img_place').attr('src',"./img/チップ25.png");
-    }
-    if (this.value == 5000) {
-    $('#img_place').attr('src',"./img/チップ50.png");
-    }
+
+    tt(0,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%97.png?raw=true");
+    tt(1,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%975.png?raw=true");
+    tt(2,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9710.png?raw=true");
+    tt(3,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9725.png?raw=true");
+    tt(4,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9750.png?raw=true");
+
     if (this.value == "all") {
-    $('#img_place').attr('src',"./img/オールイン.png");/////後で変更
+      $('#img_place').attr('src', "./img/オールイン.png");/////後で変更
+      allin++;
     }
     $('#play_table').removeClass("smoke");
   });
@@ -202,120 +206,55 @@ function queue(op) {
   $('[id^=tableNum_]').on('click', function () {
     $('#spin_img').addClass('spin');
     $('#randomNum').removeClass('pnum');
-     deleteDate = 0;
 
-    if (cselectedChip == 100) {
-      selectNum.push(parseInt(this.value));
-      // お金の処理
-      chip00.push(100);
-      // $(this).addClass('white');
-    }
-    if (cselectedChip == 500) {
-      selectNum.push(parseInt(this.value));
-      // お金の処理
-      chip00.push(500);
-      // $(this).addClass('purple');
-    }
-    if (cselectedChip == 1000) {
-      selectNum.push(parseInt(this.value));
-      // お金の処理
-      chip00.push(1000);
-      // $(this).addClass('skyblue');
-    }
-    if (cselectedChip == 2500) {
-      selectNum.push(parseInt(this.value));
-      console.log(selectNum);
-      // お金の処理
-      chip00.push(25000);
-      // $(this).addClass('green');
-    }
-    if (cselectedChip == 5000) {
-      selectNum.push(parseInt(this.value));
-      // お金の処理
-      chip00.push(5000);
-      // $(this).addClass('redpurple');
-    }
-    if (cselectedChip == handmoney) {
-      selectNum.push(parseInt(this.value));
-      chip00.push(parseInt(handmoney));////////////////////////////
-    }
+    deleteDate = 0;
+    const arry = ["100", "500", "1000", "2500", "5000", handmoney];
+    let uuuu = this.value;
+    let iii = this;
+    function kitakore(obj_key) {
+      if (arry.includes(obj_key)) {
+        selectNum.push(uuuu);
+        chip00.push(obj_key);
 
-    console.log(cselectedChip);
-    
-    console.log(selectNum);
-    console.log(chip00);
-    console.log(handmoney);
-
-
-    switch (chip33) {
-      case "100":
-      $(this).addClass('white');
-      break;
-      case "500":
-      $(this).addClass('purple');
-      break;
-      case "1000":
-      $(this).addClass('skyblue');
-      break;
-      case "2500":
-      $(this).addClass('green');
-      break;
-      case "5000":
-      $(this).addClass('redpurple');
-      break;
-      default:
-        $(this).addClass('danger');
-        break;
+        if (obj_key == handmoney) {
+          allin++;
+          selectNum.push(uuuu);
+          chip00.push(handmoney);////////////////////////////
+        }
+      }
     }
 
     // 常時お金の計算
-    handmoney -= cselectedChip
+    handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
+    kitakore(cselectedChip);
+    colorSwitch(iii);
   });
+
   ///////////////////////////////
   // potionline1のクリック動作
   $('[id^=optionline]').on('click', function () {
     $('#spin_img').addClass('spin');
     $('#randomNum').removeClass('pnum');
 
+    let ccc = this.value;
+    let iii = this;
+    colorSwitch(iii);
 
-    if (this.value == "up") {
-      optionNum1.push(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36);
-      new_arr_up = [].concat(chip33);
-      console.log(optionNum1);
-
-    } else if (this.value == "center") {
-      optionNum2.push(2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35);
-      new_arr_center = [].concat(chip33);
-      console.log(optionNum2);
-
-    } else {
-      optionNum3.push(1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34);
-      new_arr_bottom = [].concat(chip33);
-      console.log(optionNum3);
-    }
-
-    switch (chip33) {
-      case "100":
-      $(this).addClass('white');
-      break;
-      case "500":
-      $(this).addClass('purple');
-      break;
-      case "1000":
-      $(this).addClass('skyblue');
-      break;
-      case "2500":
-      $(this).addClass('green');
-      break;
-      case "5000":
-      $(this).addClass('redpurple');
-      break;
-      default:
-        $(this).addClass('danger');
+    switch (ccc) {
+      case "up":
+        optionNum1.push(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36);
+        new_arr_up = [].concat(chip33);
+        break;
+      case "center":
+        optionNum2.push(2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35);
+        new_arr_center = [].concat(chip33);
+        break;
+      case "bottom":
+        optionNum3.push(1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34);
+        new_arr_bottom = [].concat(chip33);
         break;
     }
-    // $(this).addClass('red');
     // お金の計算
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
@@ -323,53 +262,40 @@ function queue(op) {
   ///////////////////////////////
   $('[id^=optionST12_]').on('click', function () {
     $('#spin_img').addClass('spin');
-
     $('#randomNum').removeClass('pnum');
 
-    if (this.value == "1st12") {
-      optionST12_left.push(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-      new_arr_left = [].concat(chip33);
-      console.log(optionST12_left);
-    } else if (this.value == "2st12") {
-      optionST12_center.push(13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
-      new_arr_middle = [].concat(chip33);
-      console.log(optionST12_center);
-    } else {
-      optionST12_right.push(25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36);
-      new_arr_right = [].concat(chip33);
-      console.log(optionST12_right);
-    }
+    let ppp = this.value;
+    let iii = this;
+    colorSwitch(iii);
 
-    switch (chip33) {
-      case "100":
-      $(this).addClass('white');
-      break;
-      case "500":
-      $(this).addClass('purple');
-      break;
-      case "1000":
-      $(this).addClass('skyblue');
-      break;
-      case "2500":
-      $(this).addClass('green');
-      break;
-      case "5000":
-      $(this).addClass('redpurple');
-      break;
-      default:
-        $(this).addClass('danger');
+    switch (ppp) {
+      case "1st12":
+        optionST12_left.push(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+        new_arr_left = [].concat(chip33);
+        console.log(optionNum1);
+        break;
+      case "2st12":
+        optionST12_center.push(13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
+        new_arr_middle = [].concat(chip33);
+        console.log(optionST12_center);
+        break;
+      case "3rd12":
+        optionST12_right.push(25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36);
+        new_arr_right = [].concat(chip33);
+        console.log(optionST12_right);
         break;
     }
-   
-    // $(this).addClass('red');
+
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
-
   });
   // 1~18 19~36
-  $('[id^=optionHalfNum_').on('click', function() {
+  $('[id^=optionHalfNum_').on('click', function () {
     $('#randomNum').removeClass('pnum');
     $('#spin_img').addClass('spin');
+
+    let iii = this;
+    colorSwitch(iii);
 
     if (this.value == "left") {
       optionHalfNum_left.push(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);
@@ -380,129 +306,74 @@ function queue(op) {
       new_hulf_right = [].concat(chip33);
       console.log(optionHalfNum_right);
     }
-    switch (chip33) {
-      case "100":
-      $(this).addClass('white');
-      break;
-      case "500":
-      $(this).addClass('purple');
-      break;
-      case "1000":
-      $(this).addClass('skyblue');
-      break;
-      case "2500":
-      $(this).addClass('green');
-      break;
-      case "5000":
-      $(this).addClass('redpurple');
-      break;
-      default:
-        $(this).addClass('danger');
-        break;
-    }
-    // $(this).addClass('red');
+
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
   });
   /////////////
   // 偶数と奇数
-  $('[id^=option1or2_').on('click', function() {
+  $('[id^=option1or2_').on('click', function () {
     $('#randomNum').removeClass('pnum');
     $('#spin_img').addClass('spin');
 
+    let iii = this;
+    colorSwitch(iii);
+
     if (this.value == "EVEN") {
-      option1or2_even = [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36];
+      option1or2_even = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36];
       new_even = [].concat(chip33);
       console.log(option1or2_even);
     } else {
-      option1or2_odd = [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35];
+      option1or2_odd = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35];
       new_odd = [].concat(chip33);
       console.log(option1or2_odd);
     }
-    switch (chip33) {
-      case "100":
-      $(this).addClass('white');
-      break;
-      case "500":
-      $(this).addClass('purple');
-      break;
-      case "1000":
-      $(this).addClass('skyblue');
-      break;
-      case "2500":
-      $(this).addClass('green');
-      break;
-      case "5000":
-      $(this).addClass('redpurple');
-      break;
-      default:
-      $(this).addClass('danger');
-      break;
-    }
 
-    // $(this).addClass('red');
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
   });
   ///red or black
-  $('[id^=optionColor_').on('click', function() {
+  $('[id^=optionColor_').on('click', function () {
     $('#randomNum').removeClass('pnum');
-
     $('#spin_img').addClass('spin');
 
+    let iii = this;
+    colorSwitch(iii);
+
     if (this.value == "RED") {
-      color_red = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+      color_red = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
       new_red = [].concat(chip33);
       console.log(color_red);
     } else {
-      color_black = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35];
+      color_black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35];
       new_black = [].concat(chip33);
       console.log(color_black);
     }
-    switch (chip33) {
-      case "100":
-      $(this).addClass('white');
-      break;
-      case "500":
-      $(this).addClass('purple');
-      break;
-      case "1000":
-      $(this).addClass('skyblue');
-      break;
-      case "2500":
-      $(this).addClass('green');
-      break;
-      case "5000":
-      $(this).addClass('redpurple');
-      break;
-      default:
-        $(this).addClass('danger');
-        break;
-    }
 
-    // $(this).addClass('red');
     handmoney -= cselectedChip;
     $('#chash').text(String(handmoney));
   });
   ///////////////////////////////
-// スタート
+  // スタート
   $('#start').on('click', function () {
     $('#spin_img').removeClass('spin');
     $('#randomNum').addClass('pnum');
-    const randomNum = getRandomInt(0, 36);
+    $('#mask').addClass('displaynone');
+
+    const randomNum = getRandomInt(1, 1);
     $('#randomNum').text(randomNum);
     // 過去データ処理
     pastDate.splice(0, 1, randomNum);
     // 選んだデータが一致しているか
-    if (selectNum.includes(randomNum)) {
+    if (selectNum.includes(String(randomNum))) {
       queue("あたり「ストレート」");
       ///////////////////////////////
       // 配列の特定のobjのキーを取得
       const result1 = Object.keys(selectNum).reduce((r, key) => {
-        return selectNum[key] === randomNum ? key : r
+        return selectNum[key] == randomNum ? key : r
       }, null);
       //数字　当選　計算処理
-      handmoney += chip00[result1] * 36;
+      handmoney += (chip00[result1] * 36);
       $('#chash').text(handmoney);
       ////////////////////////////////
     }
@@ -549,7 +420,7 @@ function queue(op) {
       queue("あたり「19~36」");
       $('#chash').text(handmoney);
     }
-  // 偶数と奇数
+    // 偶数と奇数
     if (option1or2_even.includes(randomNum)) {
       handmoney += new_even * 2;
       queue("あたり「EVEN」");
@@ -573,7 +444,7 @@ function queue(op) {
     }
     color_red = [];
     color_black = [];
-    
+
     option1or2_even = [];
     option1or2_odd = [];
 
@@ -610,17 +481,18 @@ function queue(op) {
         ul.removeChild(ul.lastChild);
       }
     }
+
     memory2 = handmoney - memory;
-    console.log(memory2);
+    console.log(parseInt(memory2));
     const win = document.getElementById('win');
     win.textContent = memory2;
     memory = 0;
     memory += handmoney;
 
-    const lose = ["お金が減った","負けた","イカサマか？","次は当てる！","涙。",]
+    const lose = ["お金が減った", "負けた", "イカサマか？", "次は当てる！", "涙。",]
 
     if (memory2 < 0) {
-      queue(lose[getRandomInt(0,lose.length - 1)]);
+      queue(lose[getRandomInt(0, lose.length - 1)]);
     }
 
     // ゲームオーバー通知
@@ -629,6 +501,6 @@ function queue(op) {
       $('#gameovermask').removeClass('displaynone');
       $('#gameOver').removeClass('displaynone');
       clearTimeout(timeoutId);   ////stoptimer
-      }
+    }
   });
 }

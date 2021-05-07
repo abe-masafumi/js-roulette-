@@ -54,6 +54,9 @@ body {
   right: 0;
   z-index: 5;
 }
+.z3 {
+  z-index: 3;
+}
 a {
   color: white;
   text-decoration: none;
@@ -314,7 +317,7 @@ margin-left: 150px;
 
 .start {
   margin-left: 200px;
-  cursor: pointer;
+  cursor: pointer;z-index: 4;
 
 }
 
@@ -373,7 +376,8 @@ margin-left: 150px;
 .danger {
   background: #f30f0f;
   pointer-events: none;
-  color: white;
+  color: black;
+  z-index: 8;
 }
 
 .colect {
@@ -394,7 +398,6 @@ margin-left: 150px;
 #colecttext {
 text-align: center;
 text-shadow: #FC0 2px 0 10px;
-/* padding-left: 15px; */
 margin-left: 32px;
 
 }
