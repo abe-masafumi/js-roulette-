@@ -7,6 +7,12 @@ body {
   margin: auto;
   border: 5px solid #7b442d;
   user-select: none;
+  position: relative;
+}
+.rogout_inside {
+  text-align: initial;
+  position: absolute;
+  z-index: 3;
 }
 
 .dance {
@@ -75,6 +81,26 @@ a {
   top: 120px;
   left: 300px;
   font-size: 150px;
+  z-index: 6;
+}
+.rogout_outside{
+  background: green;
+  border: 6px solid #c89d0d;
+  border-radius: 30px 30px 30px 30px;
+  position: absolute;
+  top: 758px;
+  left: 1000px;
+  font-size: 50px;
+  z-index: 6;
+}
+#rogin{
+  background: green;
+  border: 6px solid #c89d0d;
+  border-radius: 30px 30px 30px 30px;
+  position: absolute;
+  top: 758px;
+  left: 471px;
+  font-size: 50px;
   z-index: 6;
 }
 

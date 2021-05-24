@@ -1,18 +1,24 @@
 'uss strict';
 
-//thクリック動作でid取得
-// $('th').on('click', function () {
-//    let id = $('this').attr('id');
-//   console.log(String(id));
 {
+  // ログアウトボタン追加////おそらくfirebase行き(ゲーム内のボタン左上)
+  $('[id=rogout]').on('click', function () {
+    alert('ログアウトしまーす');
+  });
+  $('#rogin').on('click', function () {
+    alert('ログインしまーす');
+  });
+
   $('#gameStart').on('click', function () {
     $('#info').addClass('displaynone');
     $('#mask').addClass('displaynone');
     $(this).addClass('displaynone');
+    $('.rogout_outside').addClass('displaynone');
+    $('#rogin').addClass('displaynone');
     countUp();
   });
 
-  // 選んだ数字のデータ
+  //////////////////////// 選んだ数字のデータ(ユーザー毎に管理)///おそらくfirebase行き
   let selectNum = [];
   // to1オプ
   let optionNum1 = [];
@@ -36,11 +42,11 @@
   let pastDate = [];
   let deleteDate = 0;
 
-  // お金のデータ
+  ////////////////////////////お金のデータ（ユーザー毎に管理）////おそらくfirebase行き
   let handmoney = 10000;
   $('#chash').text(handmoney);
 
-  // 借金ボタン
+  ///////////////////////////借金ボタン(これ使うと無限にお金増やせるから今度消す)
   let lone = 0;
   const lonetext = document.getElementById('lonetext');
   lonetext.textContent = lone;
@@ -122,7 +128,7 @@
       default:
         $(mmm).addClass('danger');
         allin++;
-        if(allin == 2) {
+        if (allin == 2) {
           $('#mask').removeClass('displaynone');
           $('#mask').addClass('z3');
         }
@@ -149,7 +155,7 @@
   const timer = document.getElementById('timer');
   let startTime;
   let timeoutId;
-
+  // 時間の設定
   function countUp() {
     const d = new Date(Date.now() - startTime);
     const m = String(d.getMinutes()).padStart(2, '0');
@@ -180,20 +186,20 @@
     $(this).addClass('smoke');
     console.log(this.value);
 
-    const bbb =this.value;
-    const ぴくら = [100,500,1000,2500,5000,"all"];
+    const bbb = this.value;
+    const ぴくら = [100, 500, 1000, 2500, 5000, "all"];
 
-    function  tt(g,ccccc) {
+    function tt(g, ccccc) {
       if (bbb == ぴくら[g]) {
         $('#img_place').attr('src', ccccc);
       }
     }
 
-    tt(0,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%97.png?raw=true");
-    tt(1,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%975.png?raw=true");
-    tt(2,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9710.png?raw=true");
-    tt(3,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9725.png?raw=true");
-    tt(4,"https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9750.png?raw=true");
+    tt(0, "https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%97.png?raw=true");
+    tt(1, "https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%975.png?raw=true");
+    tt(2, "https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9710.png?raw=true");
+    tt(3, "https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9725.png?raw=true");
+    tt(4, "https://github.com/abe-masafumi/kadai-js/blob/master/docs/img/%E3%83%81%E3%83%83%E3%83%9750.png?raw=true");
 
     if (this.value == "all") {
       $('#img_place').attr('src', "./img/オールイン.png");/////後で変更
@@ -298,11 +304,11 @@
     colorSwitch(iii);
 
     if (this.value == "left") {
-      optionHalfNum_left.push(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);
+      optionHalfNum_left.push(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18);
       new_hulf_left = [].concat(chip33);
       console.log(optionHalfNum_left);
     } else {
-      optionHalfNum_right.push(19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36);
+      optionHalfNum_right.push(19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36);
       new_hulf_right = [].concat(chip33);
       console.log(optionHalfNum_right);
     }
@@ -360,7 +366,11 @@
     $('#randomNum').addClass('pnum');
     $('#mask').addClass('displaynone');
 
-    const randomNum = getRandomInt(1, 1);
+
+
+
+    // ランダムで出てくる数字を設定↓　↓ここを変更したら動作確認が簡単/////////////////////////
+    const randomNum = getRandomInt(0, 36);
     $('#randomNum').text(randomNum);
     // 過去データ処理
     pastDate.splice(0, 1, randomNum);
@@ -442,6 +452,7 @@
       queue("あたり「BLACK」");
       $('#chash').text(handmoney);
     }
+    // リセット処理
     color_red = [];
     color_black = [];
 
@@ -468,7 +479,7 @@
     $('[id^=option1or2_').removeClass('white purple skyblue green redpurple danger');
     $('[id^=optionColor_').removeClass('white purple skyblue green redpurple danger');
     $('#chips1').click();
-
+    ////////
     // 過去データの表示
     const ul = document.getElementById('pastDate')
     const li = document.createElement('li');
@@ -489,13 +500,14 @@
     memory = 0;
     memory += handmoney;
 
+    // １ゲームでお金が減った時の処理もプレイヤーによって違うからどうなるんだろ//////////////////
     const lose = ["お金が減った", "負けた", "イカサマか？", "次は当てる！", "涙。",]
 
     if (memory2 < 0) {
       queue(lose[getRandomInt(0, lose.length - 1)]);
     }
 
-    // ゲームオーバー通知
+    // ゲームオーバー通知もプレイヤーによって違うけどゲームオーバー時は強制ログアウト？？
     if (handmoney <= 0) {
       // alert('Game Over');
       $('#gameovermask').removeClass('displaynone');
