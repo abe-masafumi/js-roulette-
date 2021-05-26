@@ -1,6 +1,9 @@
 'uss strict';
 
 {
+
+
+
   // ログアウトボタン追加////おそらくfirebase行き(ゲーム内のボタン左上)
   $('[id=rogout]').on('click', function () {
     alert('ログアウトしまーす');
@@ -42,9 +45,25 @@
   let pastDate = [];
   let deleteDate = 0;
 
+
+  const my_value = location.search.substring(1);///name
+
+  localStorage.setItem('url_name', `${my_value}`);
+  let USER = localStorage.getItem("url_name");
+  console.log(USER);
+
+  let MONEY = localStorage.getItem("hand_money");
+  let my_handmoney = MONEY;
+  console.log(MONEY);
+
+  const rogout = document.getElementById('rogout');
+  rogout.addEventListener('click', () => {
+    localStorage.setItem('hand_money', `${my_my_handmoney}`);
+  });
+
   ////////////////////////////お金のデータ（ユーザー毎に管理）////おそらくfirebase行き
-  let handmoney = 10000;
-  $('#chash').text(handmoney);
+  // let my_handmoney = 10000;
+  $('#chash').text(my_handmoney);
 
   ///////////////////////////借金ボタン(これ使うと無限にお金増やせるから今度消す)
   let lone = 0;
@@ -54,23 +73,23 @@
   danger.addEventListener('click', () => {
     lone -= 10000;
     lonetext.textContent = lone;
-    handmoney += 10000;
-    $('#chash').text(String(handmoney));
+    my_handmoney += 10000;
+    $('#chash').text(String(my_handmoney));
   });
 
   // 借金返済ボタン
   const peyoff = document.getElementById('pey_off');
   peyoff.addEventListener('click', () => {
-    handmoney += lone;
+    my_handmoney += lone;
     lone = 0;
-    $('#chash').text(String(handmoney));
+    $('#chash').text(String(my_handmoney));
     lonetext.textContent = lone;
   });
 
   // １ゲームの記録データ
   let memory = 0;
   let memory2 = 0;
-  memory += handmoney;
+  memory += my_handmoney;
 
   //チップ金額
   let chip00 = [];
@@ -174,8 +193,8 @@
     allin = 0;
     $('#ruret_table').removeClass('dance');
     if (this.value == "all") {
-      cselectedChip = handmoney;
-      chip33 = handmoney;
+      cselectedChip = my_handmoney;
+      chip33 = my_handmoney;
       $('#ruret_table').addClass('dance');
     } else {
       cselectedChip = this.value;
@@ -214,7 +233,7 @@
     $('#randomNum').removeClass('pnum');
 
     deleteDate = 0;
-    const arry = ["100", "500", "1000", "2500", "5000", handmoney];
+    const arry = ["100", "500", "1000", "2500", "5000", my_handmoney];
     let uuuu = this.value;
     let iii = this;
     function kitakore(obj_key) {
@@ -222,17 +241,17 @@
         selectNum.push(uuuu);
         chip00.push(obj_key);
 
-        if (obj_key == handmoney) {
+        if (obj_key == my_handmoney) {
           allin++;
           selectNum.push(uuuu);
-          chip00.push(handmoney);////////////////////////////
+          chip00.push(my_handmoney);////////////////////////////
         }
       }
     }
 
     // 常時お金の計算
-    handmoney -= cselectedChip;
-    $('#chash').text(String(handmoney));
+    my_handmoney -= cselectedChip;
+    $('#chash').text(String(my_handmoney));
     kitakore(cselectedChip);
     colorSwitch(iii);
   });
@@ -262,8 +281,8 @@
         break;
     }
     // お金の計算
-    handmoney -= cselectedChip;
-    $('#chash').text(String(handmoney));
+    my_handmoney -= cselectedChip;
+    $('#chash').text(String(my_handmoney));
   });
   ///////////////////////////////
   $('[id^=optionST12_]').on('click', function () {
@@ -292,8 +311,8 @@
         break;
     }
 
-    handmoney -= cselectedChip;
-    $('#chash').text(String(handmoney));
+    my_handmoney -= cselectedChip;
+    $('#chash').text(String(my_handmoney));
   });
   // 1~18 19~36
   $('[id^=optionHalfNum_').on('click', function () {
@@ -313,8 +332,8 @@
       console.log(optionHalfNum_right);
     }
 
-    handmoney -= cselectedChip;
-    $('#chash').text(String(handmoney));
+    my_handmoney -= cselectedChip;
+    $('#chash').text(String(my_handmoney));
   });
   /////////////
   // 偶数と奇数
@@ -335,8 +354,8 @@
       console.log(option1or2_odd);
     }
 
-    handmoney -= cselectedChip;
-    $('#chash').text(String(handmoney));
+    my_handmoney -= cselectedChip;
+    $('#chash').text(String(my_handmoney));
   });
   ///red or black
   $('[id^=optionColor_').on('click', function () {
@@ -356,8 +375,8 @@
       console.log(color_black);
     }
 
-    handmoney -= cselectedChip;
-    $('#chash').text(String(handmoney));
+    my_handmoney -= cselectedChip;
+    $('#chash').text(String(my_handmoney));
   });
   ///////////////////////////////
   // スタート
@@ -383,74 +402,74 @@
         return selectNum[key] == randomNum ? key : r
       }, null);
       //数字　当選　計算処理
-      handmoney += (chip00[result1] * 36);
-      $('#chash').text(handmoney);
+      my_handmoney += (chip00[result1] * 36);
+      $('#chash').text(my_handmoney);
       ////////////////////////////////
     }
 
     // 右オプション　当選　計算処理
     if (optionNum1.includes(randomNum)) {
-      handmoney += new_arr_up * 3;
+      my_handmoney += new_arr_up * 3;
       queue("あたり「2TO1」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (optionNum2.includes(randomNum)) {
-      handmoney += new_arr_center * 3;
+      my_handmoney += new_arr_center * 3;
       queue("あたり「2TO1」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (optionNum3.includes(randomNum)) {
-      handmoney += new_arr_bottom * 3;
+      my_handmoney += new_arr_bottom * 3;
       queue("あたり「2TO1」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (optionST12_left.includes(randomNum)) {
-      handmoney += new_arr_left * 3;
+      my_handmoney += new_arr_left * 3;
       queue("あたり「1ST12」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (optionST12_center.includes(randomNum)) {
-      handmoney += new_arr_middle * 3;
+      my_handmoney += new_arr_middle * 3;
       queue("あたり「2ND12」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (optionST12_right.includes(randomNum)) {
-      handmoney += new_arr_right * 3;
+      my_handmoney += new_arr_right * 3;
       queue("あたり「3RD12」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
 
     if (optionHalfNum_left.includes(randomNum)) {
-      handmoney += new_hulf_left * 2;
+      my_handmoney += new_hulf_left * 2;
       queue("あたり「1~18」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (optionHalfNum_right.includes(randomNum)) {
-      handmoney += new_hulf_right * 2;
+      my_handmoney += new_hulf_right * 2;
       queue("あたり「19~36」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     // 偶数と奇数
     if (option1or2_even.includes(randomNum)) {
-      handmoney += new_even * 2;
+      my_handmoney += new_even * 2;
       queue("あたり「EVEN」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (option1or2_odd.includes(randomNum)) {
-      handmoney += new_odd * 2;
+      my_handmoney += new_odd * 2;
       queue("あたり「ODD」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
       ///red or black
     }
     if (color_red.includes(randomNum)) {
-      handmoney += new_red * 2;
+      my_handmoney += new_red * 2;
       queue("あたり「RED」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     if (color_black.includes(randomNum)) {
-      handmoney += new_black * 2;
+      my_handmoney += new_black * 2;
       queue("あたり「BLACK」");
-      $('#chash').text(handmoney);
+      $('#chash').text(my_handmoney);
     }
     // リセット処理
     color_red = [];
@@ -493,12 +512,12 @@
       }
     }
 
-    memory2 = handmoney - memory;
+    memory2 = my_handmoney - memory;
     console.log(parseInt(memory2));
     const win = document.getElementById('win');
     win.textContent = memory2;
     memory = 0;
-    memory += handmoney;
+    memory += my_handmoney;
 
     // １ゲームでお金が減った時の処理もプレイヤーによって違うからどうなるんだろ//////////////////
     const lose = ["お金が減った", "負けた", "イカサマか？", "次は当てる！", "涙。",]
@@ -508,7 +527,7 @@
     }
 
     // ゲームオーバー通知もプレイヤーによって違うけどゲームオーバー時は強制ログアウト？？
-    if (handmoney <= 0) {
+    if (my_handmoney <= 0) {
       // alert('Game Over');
       $('#gameovermask').removeClass('displaynone');
       $('#gameOver').removeClass('displaynone');
