@@ -1,3 +1,6 @@
+<img src="home.png">
+
+> 2021/5/7  
 # kadai-js
 kadai js_random if
 # 頑張ったとこ
