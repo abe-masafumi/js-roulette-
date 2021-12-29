@@ -52,9 +52,9 @@
   let USER = localStorage.getItem("url_name");
   console.log(USER);
 
-  let MONEY = localStorage.getItem("hand_money");
-  let my_handmoney = MONEY;
-  console.log(MONEY);
+  // let MONEY = localStorage.getItem("hand_money");
+  // let my_handmoney = MONEY;
+  // console.log(MONEY);
 
   const rogout = document.getElementById('rogout');
   rogout.addEventListener('click', () => {
@@ -62,7 +62,7 @@
   });
 
   ////////////////////////////お金のデータ（ユーザー毎に管理）////おそらくfirebase行き
-  // let my_handmoney = 10000;
+  let my_handmoney = 10000;
   $('#chash').text(my_handmoney);
 
   ///////////////////////////借金ボタン(これ使うと無限にお金増やせるから今度消す)
